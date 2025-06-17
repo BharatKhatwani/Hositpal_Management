@@ -122,7 +122,7 @@ const Signup = () => {
               >
                 <option value="">Select your role</option>
                 <option value="patient">Patient</option>
-                <option value="doctor">Doctor</option>
+                {/* <option value="doctor">Doctor</option> */}
               </select>
               {errors.role && <p className="text-red-500 text-sm">{errors.role}</p>}
             </div>
