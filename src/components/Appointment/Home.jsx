@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ActionPage from '../pages/ActionPage.jsx';
 import { FaCalendarPlus } from 'react-icons/fa';
 import { FaListCheck } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BookAppointment = () => {
   const [username, setUsername] = useState('');
@@ -42,7 +42,7 @@ const BookAppointment = () => {
             </p>
             <button
               onClick={() => navigate('/book-appointment')}
-              className="bg-[#0ecbf1] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#08b3d8] transition duration-200"
+              className="bg-[#0ecbf1] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#08b3d8] transition duration-200 cursor-pointer"
             >
               Go to Book Appointment
             </button>
@@ -63,8 +63,8 @@ const BookAppointment = () => {
               View, reschedule, or cancel your upcoming appointments.
             </p>
             <button
-              onClick={() => navigate('/my-appointments')}
-              className="bg-[#0ecbf1] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#08b3d8] transition duration-200"
+              onClick={() => navigate('/appointments')}
+              className="bg-[#0ecbf1] text-white px-5 py-2 rounded-xl font-medium hover:bg-[#08b3d8] transition duration-200 cursor-pointer"
             >
               Go to My Appointments
             </button>

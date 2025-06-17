@@ -14,6 +14,8 @@ const BookAppointment = () => {
   const [timeError, setTimeError] = useState('');
 
 // 
+
+;
 // const { doctorID, patientID, date, time, note } = req.body;
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -105,7 +107,7 @@ const BookAppointment = () => {
   return (
     <>
 <ToastContainer
-position="bottom-right"
+position="top-right"
 autoClose={5000}
 hideProgressBar={false}
 newestOnTop={false}
@@ -117,7 +119,6 @@ pauseOnHover
 theme="dark"
 transition={Bounce}
 />
-
 
 
     <div className="min-h-screen bg-[#f9fcff]">
@@ -180,43 +181,60 @@ transition={Bounce}
 
           {/* Time Slot */}
           <div>
-            <label className="block mb-1 text-gray-700 font-medium">Time Slot</label>
-            <input
-              type="time"
-              name="time"
-              id="time"
-              className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0ecbf1] ${timeError ? 'border-red-500' : ''}`}
-              onChange={(e) => {
-                const timeValue = e.target.value;
+  <label className="block mb-1 text-gray-700 font-medium">Time Slot</label>
+  <select
+    name="time"
+    id="time"
+    className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0ecbf1] ${timeError ? 'border-red-500' : ''}`}
+    onChange={(e) => {
+      const timeValue = e.target.value;
 
-                if (!selectedDate) {
-                  setTimeError('Please select a date first');
-                  return;
-                }
+      if (!selectedDate) {
+        setTimeError('Please select a date first');
+        return;
+      }
 
-                const selectedDateObj = new Date(selectedDate);
-                const [hours, minutes] = timeValue.split(':');
-                selectedDateObj.setHours(parseInt(hours), parseInt(minutes), 0);
+      const selectedDateObj = new Date(selectedDate);
+      const [hours, minutes] = timeValue.split(':');
+      selectedDateObj.setHours(parseInt(hours), parseInt(minutes), 0);
 
-                const now = new Date();
-                if (selectedDateObj < now) {
-                  setTimeError('Please select a time slot in the future');
-                } else {
-                  setTimeError('');
-                  setSelectedTime(timeValue);
-                }
-              }}
-              value={selectedTime}
-              min="09:00"
-              max="16:00"
-              step="1800"
-              onClick={(e) => e.target.showPicker()}
-              required
-            />
-            {timeError && (
-              <p className="text-red-500 text-sm mt-1">{timeError}</p>
-            )}
-          </div>
+      const now = new Date();
+      if (selectedDateObj < now) {
+        setTimeError('Please select a time slot in the future');
+      } else {
+        setTimeError('');
+        setSelectedTime(timeValue);
+      }
+    }}
+    value={selectedTime}
+    required
+  >
+    <option value="">Select a time</option>
+    {[
+      '09:00',
+      '09:30',
+      '10:00',
+      '10:30',
+      '11:00',
+      '11:30',
+      '13:00',
+      '13:30',
+      '14:00',
+      '14:30',
+      '15:00',
+    ].map((slot) => (
+      <option key={slot} value={slot}>
+        {new Date(`1970-01-01T${slot}:00`).toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        })}
+      </option>
+    ))}
+  </select>
+  {timeError && (
+    <p className="text-red-500 text-sm mt-1">{timeError}</p>
+  )}
+</div>
 
           {/* Notes */}
           <div>
@@ -233,7 +251,7 @@ transition={Bounce}
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full bg-[#0ecbf1] text-white font-semibold py-2 px-4 rounded hover:bg-[#0bb5d4] transition"
+            className="w-full bg-[#0ecbf1] text-white font-semibold py-2 px-4 rounded hover:bg-[#0bb5d4] transition cursor-pointer"
           >
             Book Appointment
           </button>

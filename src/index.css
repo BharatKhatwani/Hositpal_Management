@@ -5,7 +5,10 @@ body{
   margin : 0px;
   padding : 0px;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  
-  box-sizing : border-box;
+  overflow-x: hidden;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none; 
+}
+body::-webkit-scrollbar {
+  display: none;               /* Chrome, Safari, Opera */
 }

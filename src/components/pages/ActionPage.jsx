@@ -32,7 +32,7 @@ const ActionPage = () => {
             Book Appointment
           </Link>
           <Link
-            to="/my-appointments"
+            to="/appointments"
             className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-[rgba(123,243,241,0.74)] transition-all duration-200"
           >
             <FaListCheck size={18} />
@@ -43,7 +43,7 @@ const ActionPage = () => {
               localStorage.clear();
               navigate('/login');
             }}
-            className="px-4 py-2 rounded-md bg-red-100 text-red-600 font-semibold hover:bg-red-200 transition-all duration-200"
+            className="px-4 py-2 rounded-md bg-red-100 text-red-600 font-semibold hover:bg-red-200 transition-all duration-200 cursor-pointer"
           >
             Logout
           </button>

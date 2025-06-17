@@ -57,7 +57,7 @@ const Login = () => {
       localStorage.setItem('userId', result.user.id);
       localStorage.setItem('userRole', result.user.role);
       localStorage.setItem('username', result.user.username);
-      localStorage.setItem("spespecialization", result.user.spespecialization)
+      localStorage.setItem("specialization", result.user.spespecialization)
 
       toast.success('🎉 Login successful!', {
         position: 'top-right',

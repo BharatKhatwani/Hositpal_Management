@@ -6,11 +6,12 @@ import { AuthProvider } from './components/context/AuthContext';
 import ActionPage from './components/pages/ActionPage';
 import Home from './components/Appointment/Home';
 import BookAppointment from './components/Appointment/BookAppointment';
+import MyAppoinment from './components/Appointment/MyAppoinment';
 
 const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter >
       <Routes>
 
         <Route path="/" element={<Signup />} />
@@ -19,6 +20,7 @@ const App = () => {
         {/* <Route path = '/home' element = {<ActionPage/>}></Route> */}
         <Route path = '/home' element = {<Home/>}></Route>
         <Route path='/book-appointment' element = {<BookAppointment/>}></Route>
+        <Route path = '/appointments' element = {<MyAppoinment/>}></Route>
       </Routes>
     </BrowserRouter>
 
