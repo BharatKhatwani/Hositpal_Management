@@ -18,11 +18,17 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // ✅ Fix: Correct useEffect syntax and dependency array
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate('/home');
-  //   }
-  // }, [token, navigate]);
+useEffect(() => {
+  if (token) {
+    const role = localStorage.getItem('userRole');
+    if (role === 'doctor') {
+      navigate('/doctor-dashboard');
+    } else if (role === 'patient') {
+      navigate('/patient-dashboard');
+    }
+  }
+}, [token, navigate]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +63,7 @@ const Login = () => {
       localStorage.setItem('userId', result.user.id);
       localStorage.setItem('userRole', result.user.role);
       localStorage.setItem('username', result.user.username);
-      localStorage.setItem("specialization", result.user.spespecialization)
+      localStorage.setItem("specialization", result.user.specialization)
 
       toast.success('🎉 Login successful!', {
         position: 'top-right',
@@ -66,7 +72,16 @@ const Login = () => {
         transition: Bounce,
       });
 
-      setTimeout(() => navigate('/home'), 2500); // Wait for toast
+      if(result.user.role  == 'doctor'){
+        navigate('/doctor-dashboard')
+      }else if(result.user.role  == 'patient') {
+        navigate('/patient-dashboard')
+      }
+else {
+  navigate('/unauthorized'); // or a default page
+}
+
+      // setTimeout(() => navigate('/patient-dashboard'), 2500); // Wait for toast
     } catch (error) {
       toast.error(error.message || 'Something went wrong!', {
         position: 'top-right',

@@ -7,25 +7,44 @@ import ActionPage from './components/pages/ActionPage';
 import Home from './components/Appointment/Home';
 import BookAppointment from './components/Appointment/BookAppointment';
 import MyAppoinment from './components/Appointment/MyAppoinment';
+import ProtectedRoute from './components/ProtectedRoute';
+import DoctorDashboard from './components/Appointment/doctor_dasboard';
 
 const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter >
       <Routes>
-
+        {/* Public routes */}
         <Route path="/" element={<Signup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} /> 
-        {/* <Route path = '/home' element = {<ActionPage/>}></Route> */}
-        <Route path = '/home' element = {<Home/>}></Route>
-        <Route path='/book-appointment' element = {<BookAppointment/>}></Route>
-        <Route path = '/appointments' element = {<MyAppoinment/>}></Route>
+
+        {/* Protected routes */}
+        <Route path="/patient-dashboard" element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        } />
+        <Route path="/book-appointment" element={
+          <ProtectedRoute>
+            <BookAppointment />
+          </ProtectedRoute>
+        } />
+        <Route path="/appointments" element={
+          <ProtectedRoute>
+            <MyAppoinment />
+          </ProtectedRoute>
+        } />
+
+         <Route path="/doctor-dashboard" element={
+          <ProtectedRoute>
+            <DoctorDashboard/>
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
-
-     </AuthProvider>
-    
+    </AuthProvider>
   );
 };
 
