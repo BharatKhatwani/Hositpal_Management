@@ -18,7 +18,7 @@ const ActionPage = () => {
 
         <div className="flex gap-6 items-center text-gray-800 text-[16px] font-medium">
           <Link
-            to="/home"
+            to="/patient-dashboard"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[rgba(123,243,241,0.74)] transition-all duration-200"
           >
             <CiHome size={20} />

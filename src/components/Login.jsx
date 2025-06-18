@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,12 +22,14 @@ useEffect(() => {
   if (token) {
     const role = localStorage.getItem('userRole');
     if (role === 'doctor') {
-      navigate('/doctor-dashboard');
+      navigate('/doctor-dashboard', { replace: true });
     } else if (role === 'patient') {
-      navigate('/patient-dashboard');
+      navigate('/patient-dashboard', { replace: true });
     }
+
   }
 }, [token, navigate]);
+
 
 
   const handleChange = (e) => {
@@ -141,7 +143,7 @@ else {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#4daaff] hover:bg-[#3399ff] text-white font-semibold py-2 rounded transition"
+              className="w-full bg-[#4daaff] hover:bg-[#3399ff] text-white font-semibold py-2 rounded transition cursor-pointer"
             >
               {isLoading ? 'Logging in...' : '🔓 Login'}
             </button>
@@ -149,9 +151,9 @@ else {
 
           <p className="text-center mt-6 text-sm text-gray-600">
             Don&apos;t have an account?{' '}
-            <a href="/signup" className="text-blue-600 hover:underline">
-              Register here
-            </a>
+            <Link to="/signup" className="text-blue-600 hover:underline">
+  Register here
+</Link>
           </p>
         </div>
       </div>

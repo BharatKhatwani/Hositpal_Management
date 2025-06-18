@@ -1,40 +1,26 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
+import { createContext, useContext, useState } from "react";
+import React from "react";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(() => localStorage.getItem('token') || null);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
 
   const login = (newToken) => {
-    localStorage.setItem('token', newToken);
+    localStorage.setItem("token", newToken);
     setToken(newToken);
   };
-
-  const signup = (newToken) => {
-    localStorage.setItem('token', newToken);
+  const signup = (newToken) =>{
+    localStorage.setItem("token", newToken);
     setToken(newToken);
-  };
+  }
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
+    localStorage.removeItem("token");
     setToken(null);
   };
 
-  // Sync token if manually removed (e.g., from dev tools)
-  useEffect(() => {
-    const handleStorage = () => {
-      const storedToken = localStorage.getItem('token');
-      if (!storedToken) setToken(null);
-    };
-
-    window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ token, login, signup, logout }}>
+    <AuthContext.Provider value={{ token, login, logout , signup}}>
       {children}
     </AuthContext.Provider>
   );

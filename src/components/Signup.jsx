@@ -18,9 +18,7 @@ const Signup = () => {
   });
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    localStorage.setItem('lastVisitedPage', window.location.pathname);
-  }, []);
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -170,7 +168,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#4daaff] text-white font-semibold py-2 rounded hover:bg-[#3399ff]"
+              className="w-full bg-[#4daaff] text-white font-semibold py-2 rounded hover:bg-[#3399ff] cursor-pointer"
             >
               {isLoading ? 'Registering...' : '➕ Register'}
             </button>
