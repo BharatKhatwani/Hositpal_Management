@@ -131,7 +131,10 @@ const DoctorDashboard = () => {
                           <p className="text-sm text-gray-500">{appt.note}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm text-gray-500">{new Date(appt.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                          <p className="text-sm text-gray-500">
+                            {appt.time}
+                          </p>
+
                           <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Confirmed</span>
                         </div>
                       </div>
